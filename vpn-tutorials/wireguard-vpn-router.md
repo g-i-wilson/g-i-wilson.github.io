@@ -13,8 +13,8 @@ Address = <VPN_IP_ADDR>/32
 DNS = 84.200.69.80, 84.200.70.40
 
 # Reverse of what is on the cloud server
-PostUp = iptables -A FORWARD -i eth0 -j ACCEPT; iptables -A FORWARD -o eth0 -j ACCEPT; $
-PostDown = iptables -D FORWARD -i eth0 -j ACCEPT; iptables -D FORWARD -o eth0 -j ACCEPT$
+PostUp = iptables -A FORWARD -i eth0 -j ACCEPT; iptables -A FORWARD -o eth0 -j ACCEPT; iptables -t nat -A POSTROUTING -o %i -j MASQUERADE
+PostDown = iptables -D FORWARD -i eth0 -j ACCEPT; iptables -D FORWARD -o eth0 -j ACCEPT; iptables -t nat -D POSTROUTING -o %i -j MASQUERADE
 
 [Peer]
 PublicKey = <SERVER_PUBLIC_KEY>
