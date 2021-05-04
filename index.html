@@ -22,7 +22,9 @@
 		border-style: solid;
 		border-color: rgb(0,31,127);
 	}
-	a {
+	button {
+		margin: 1px;
+		padding: 0 2px 0 2px;
 		color: blue;
 	}
 	.headlineDiv {
@@ -40,7 +42,7 @@
 	}
 </style>
 </head>
-<body>
+<body onload="fetchContent('2021-04')">
 	<div class="headlineDiv">
 		<h1>g-i-wilson.github.io</h1>
 	</div>
@@ -55,30 +57,24 @@
 		</ul>
 	</div>
 	<div>
-		<h2>Useful Links:</h2>
+		<h2>News Watch:</h2>
 			<ul>
-				<li>
-					<a href="#" onclick="fetchContent('useful-linux-admin-links')">Linux admin</a>
-					<div id="useful-linux-admin-links" class="emptyDiv"></div>
-				</li>
-				<li>
-					<a href="#" onclick="fetchContent('useful-wireguard-links')">WireGuard</a>
-					<div id="useful-wireguard-links" class="emptyDiv"></div>
-				</li>
-				<li>
-					<a href="#" onclick="fetchContent('useful-raspi-links')">RaspberryPi</a>
-					<div id="useful-raspi-links" class="emptyDiv"></div>
-				</li>
-				<li>
-					<a href="#" onclick="fetchContent('useful-java-links')">Java</a>
-					<div id="useful-java-links" class="emptyDiv"></div>
-				</li>
-				<li>
-					<a href="#" onclick="fetchContent('useful-tox-links')">Tox</a>
-					<div id="useful-tox-links" class="emptyDiv"></div>
-				</li>
+				<li><button onclick="fetchContent('2021-04')">Apr 2021</button><div id="2021-04" class="emptyDiv"></div></li>
+				<li><button onclick="fetchContent('2021-03')">Mar 2021</button><div id="2021-03" class="emptyDiv"></div></li>
+				<li><button onclick="fetchContent('2021-02')">Feb 2021</button><div id="2021-02" class="emptyDiv"></div></li>
 			</ul>
 	</div>
+	<div>
+		<h2>Useful Links:</h2>
+			<ul>
+				<li><button onclick="fetchContent('useful-linux-admin-links')">Linux admin</button><div id="useful-linux-admin-links" class="emptyDiv"></div></li>
+				<li><button onclick="fetchContent('useful-wireguard-links')">WireGuard</button><div id="useful-wireguard-links" class="emptyDiv"></div></li>
+				<li><button onclick="fetchContent('useful-raspi-links')">RaspberryPi</button><div id="useful-raspi-links" class="emptyDiv"></div></li>
+				<li><button onclick="fetchContent('useful-java-links')">Java</button><div id="useful-java-links" class="emptyDiv"></div></li>
+				<li><button onclick="fetchContent('useful-tox-links')">Tox</button><div id="useful-tox-links" class="emptyDiv"></div></li>
+			</ul>
+	</div>
+	<div>
 	<div>
 		<h2>My VPN:</h2>
 			<ul>
@@ -105,13 +101,13 @@
 			}
 		}
 		function fetchContent(contentId) {
+			if (lastElement) lastElement.innerHTML = '';
+			lastElement = document.getElementById(contentId);
+			lastElement.innerHTML = '<i>Loading...</i>';
 			fetch('info-links/'+contentId+'.html')
 				.then(res => res.text())
 				.then(text => {
-					if (lastElement) lastElement.innerHTML = '';
-					thisElement = document.getElementById(contentId);
-					thisElement.innerHTML = text;
-					lastElement = thisElement;
+					lastElement.innerHTML = text;
 				});
 		}
 	</script>
