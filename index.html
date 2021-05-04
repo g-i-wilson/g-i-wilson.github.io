@@ -108,9 +108,9 @@
 			fetch('info-links/'+contentId+'.html')
 				.then(res => res.text())
 				.then(text => {
+					if (lastElement) lastElement.innerHTML = '';
 					thisElement = document.getElementById(contentId);
 					thisElement.innerHTML = text;
-					if (lastElement) lastElement.innerHTML = '';
 					lastElement = thisElement;
 				});
 		}
