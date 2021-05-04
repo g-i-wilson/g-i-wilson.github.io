@@ -58,23 +58,25 @@
 		<h2>Useful Links:</h2>
 			<ul>
 				<li>
-					<a href="#" onclick="fetchContent('useful-linux-admin-links')">Linux admin</a>
+					<a href="#" onmouseover="fetchContent('useful-linux-admin-links')">Linux admin</a>
 					<div id="useful-linux-admin-links" class="emptyDiv"></div>
 				</li>
 				<li>
-					<a href="#" onclick="fetchContent('useful-wireguard-links')">WireGuard</a>
+					<a href="#" onmouseover="fetchContent('useful-wireguard-links')">WireGuard</a>
 					<div id="useful-wireguard-links" class="emptyDiv"></div>
 				</li>
 				<li>
-					<a href="info-links/useful-raspi-links.html">RaspberryPi</a>
-					
+					<a href="#" onmouseover="fetchContent('useful-raspi-links')">RaspberryPi</a>
+					<div id="useful-raspi-links" class="emptyDiv"></div>
 				</li>
-				<li><a href="info-links/useful-java-links.html">
-	 			Java
-				</a></li>
-				<li><a href="info-links/useful-tox-links.html">
-				Tox
-				</a></li>
+				<li>
+					<a href="#" onmouseover="fetchContent('useful-java-links')">Java</a>
+					<div id="useful-java-links" class="emptyDiv"></div>
+				</li>
+				<li>
+					<a href="#" onmouseover="fetchContent('useful-tox-links')">Tox</a>
+					<div id="useful-tox-links" class="emptyDiv"></div>
+				</li>
 			</ul>
 	</div>
 	<div>
@@ -93,6 +95,7 @@
 		</ul>
 	</div>
 	<script>
+		var lastElement;
 		function toggleHidden(itsId) {
 			theElement = document.getElementById(itsId)
 			if(theElement.style.display == 'block') {
@@ -105,7 +108,10 @@
 			fetch('info-links/'+contentId+'.html')
 				.then(res => res.text())
 				.then(text => {
-					document.getElementById(contentId).innerHTML = text;
+					thisElement = document.getElementById(contentId);
+					thisElement.innerHTML = text;
+					if (lastElement) lastElement.innerHTML = '';
+					lastElement = thisElement;
 				});
 		}
 	</script>
