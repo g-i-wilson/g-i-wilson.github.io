@@ -2,49 +2,112 @@
 <html>
 <head>
 <title>g-i-wilson</title>
+<style>
+	body {
+		font-family: sans-serif;
+		margin: 0;
+		padding: 0;
+	}
+	h1 {
+		margin: 0;
+		padding: 0;
+	}
+	div {
+		top: 0px;
+		left: 0px;
+		right: 0px;
+		margin: 0;
+		padding: 4px 16px 4px 16px;
+		border-width: 0 0 1px 0;
+		border-style: solid;
+		border-color: rgb(0,31,127);
+	}
+	a {
+		color: blue;
+	}
+	.headlineDiv {
+		color: white;
+		background-color: rgb(0,31,127);
+	}
+	.hiddenElement {
+		display: none;
+		border: 0;
+	}
+	.emptyDiv {
+		border: 0;
+		margin: 0;
+		padding: 0;
+	}
+</style>
 </head>
 <body>
-	
+	<div class="headlineDiv">
+		<h1>g-i-wilson.github.io</h1>
+	</div>
+	<div>
 	<h2>Do you know Jesus?</h2>
 		<ul>
-			<li><a href="https://answersingenesis.org/god/">answersingenesis.org/god</a></li>
-			<li><a href="https://calvarychapel.com/know-god">calvarychapel.com/know-god</a></li>
-			<li><a href="https://needhim.org/knowing-jesus/">needhim.org/knowing-jesus</a></li>
+			<li><a href="http://themostimportantnews.com/important-thing">The Most Important Thing</a></li>
+			<li><a href="http://www.minimannamoments.com/welcome-come-taste-some-bread-of-life-bread-from-heaven/life-changing-information-guaranteed/">Life Changing Information</a></li>
+			<li><a href="https://needhim.org/knowing-jesus/">Knowing Jesus</a></li>
 			<li><a href="https://ajbodev.github.io/Bible.html">Searchable Bible in a one HTML document</a><br>Courtesy of <a href="https://github.com/ajbodev/bible-html">github.com/ajbodev/bible-html</a></li>
 			<li><a href="https://daniel-hug.github.io/bible-cross-references/">Bible verse cross-reference tool</a></li>
 		</ul>
-
-	<h2>Useful Links:</h2>
-		<ul>
-			<li><a href="info-links/useful-linux-admin-links.html">
-			Linux admin
-			</a></li>
-			<li><a href="info-links/useful-wireguard-links.html">
-			WireGuard
-			</a></li>
-			<li><a href="info-links/useful-raspi-links.html">
-			RaspberryPi
-			</a></li>
-			<li><a href="info-links/useful-java-links.html">
- 			Java
-			</a></li>
-			<li><a href="info-links/useful-tox-links.html">
-			Tox
-			</a></li>
-		</ul>
-
-	<h2>My VPN:</h2>
-		<ul>
-			<li><b>txserver0</b> (Dallas, TX)</li>
-			<li><i>More to be added here... For now, message me by Tox</i></li>
-		</ul>
-
+	</div>
+	<div>
+		<h2>Useful Links:</h2>
+			<ul>
+				<li>
+					<a href="#" onclick="fetchContent('useful-linux-admin-links')">Linux admin</a>
+					<div id="useful-linux-admin-links" class="emptyDiv"></div>
+				</li>
+				<li>
+					<a href="#" onclick="fetchContent('useful-wireguard-links')">WireGuard</a>
+					<div id="useful-wireguard-links" class="emptyDiv"></div>
+				</li>
+				<li>
+					<a href="info-links/useful-raspi-links.html">RaspberryPi</a>
+					
+				</li>
+				<li><a href="info-links/useful-java-links.html">
+	 			Java
+				</a></li>
+				<li><a href="info-links/useful-tox-links.html">
+				Tox
+				</a></li>
+			</ul>
+	</div>
+	<div>
+		<h2>My VPN:</h2>
+			<ul>
+				<li><b>txserver0</b> (Dallas, TX)</li>
+				<li><i>More to be added here... For now, message me by Tox</i></li>
+			</ul>
+	</div>
+	<div>
 		<h2>Contact Me:</h2>
 		<ul>
 			<li>
 				<b><a href="https://tox.chat/">Tox</a></b>: 07D7B9018C5C724A2E9EB34C60782F78B7BDF64D5316946EF49F8E6A20F26B4631FEC281D6A4
 			</li>
 		</ul>
-	
+	</div>
+	<script>
+		function toggleHidden(itsId) {
+			theElement = document.getElementById(itsId)
+			if(theElement.style.display == 'block') {
+				theElement.style.display = 'none';
+			} else {
+				theElement.style.display = 'block';
+			}
+		}
+		function fetchContent(contentId) {
+			fetch('info-links/'+contentId+'.html')
+				.then(res => res.text())
+				.then(text => {
+					document.getElementById(contentId).innerHTML = text;
+				});
+		}
+	</script>
 </body>
 </html>
